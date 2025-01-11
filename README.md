@@ -85,7 +85,11 @@ Here's an example of the different models in the beginning and after the clean-u
 
 ![](images/03-different-models-cleaned.png)
 
-The worst brand was Ford, because in most of the cases the model is not determined by the second word of the title. The most common second words were Transit and Tourneo, but both of these can vary in sizes (weither if it's Connect, Custom, etc.), therefore exisiting many different models. For the sake of simplicity, and because later I want to group again the models by size, I set 3 different models of Ford depending on the size. 
+The worst brand was **Ford**, because in most of the cases the model is not determined by the second word of the title. The most common second words were Transit and Tourneo, but both of these can vary in sizes (weither if it's Connect, Custom, etc.), therefore exisiting many different models. For the sake of simplicity, and because later I want to group again the models by size, I set 3 different models of Ford depending on the size: Transit, Custom and Connect.
+
+Here is a picture with 4 different models, the 2 on the left being considered the same model, since they are roughly the same size.
+
+![](images/Ford-van-sizes.jpeg)
 
 I drop 4 brands that only had one model each and less than 4 vehicles per brand, not representative, I prefer simplifying the dataset.
 
@@ -144,7 +148,7 @@ Number of vans per brand:
 
 ### ``fuel``
 
-Most of the vans run with diesel.
+Most of the vans (91,79%) run with diesel.
 
 ![](images/07-fuel-value_counts.png)
 
@@ -166,14 +170,14 @@ Of course, the model also tends to predict a negative price for vans that are ac
 
 ### ``price``
 
-I had some outliers in the upper end, so I decide to drop them (only 10 vans). I also drop the 1% cheapest vans.
+I had some outliers in the upper end, so I decide to drop them (only 9 vans). I also drop the 1% cheapest vans.
 
 Let's take a look at the boxplot before and after:
 
 ![](images/05-price-boxplot-before.png)
 ![](images/05-price-boxplot-after.png)
 
-The mean price is **29.505€**
+The mean price is **29.527€**
 
 ### ``km``
 
@@ -186,7 +190,7 @@ Like I said before, thanks to the scatterplot I can find a van that its price do
 ![](images/06-km-boxplot-before.png)
 ![](images/06-km-boxplot-after.png)
 
-The mean mileage is **106.980km**
+The mean mileage is **106.963km**
 
 I do the same thing with ``age`` and ``power_cv``
 
@@ -199,15 +203,19 @@ I get dummies of the following features:
 
 Going back to ``seats``, from the number of seats I can tell if a van is a cargo van (2 or 3 seats) or a passenger (4 or more seats), so I can get another dummy, ``cargo``.
 
-Thanks to the extensive work I did on the brand and model, I can get 3 new categories: ``brand_price``, ``model_price`` and ``van_size``. It doesn't make sense the get dummies out of all the brands or models (remember, 12 brands and 57 models), but instead I separate the brands and models in 3 categories depending on their mean price.
+Thanks to the extensive work I did on the brand and model, I can get 3 new categories: ``brand_price``, ``model_price`` and ``van_size``. It doesn't make sense the get dummies out of all the brands or models (remember, 12 brands and 57 models), but instead I separate the brands and models in 3 categories depending on their mean price, which I get from a groupby.
 
-![](images/13-brand-per-price.png)
+![](images/13-brand-per-price.png) ![](images/13-brand-per-price_groupby.png)
 
 ![](images/13-brand-per-price-code.png)
 
+I do this because an expensive brand can also have affordable models, and viceversa, usually there is a model for every budget.
+
+![](images/16-models-per-price_groupby.png)
+
 From the model I can also separate the vans in 3 different sizes.
 
-With all these dummies I generate barplots against the price to see how they affect. Here are some examples. 
+With all these dummies I generate barplots against the price to see how they affect it. Here are some examples. 
 
 ![](images/14-price-per-cargo.png) ![](images/14-price-per-fuel.png) ![](images/14-price-per-doors.png) 
 
