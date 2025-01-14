@@ -107,15 +107,15 @@ else:
         else:
             model_price_value = 0
 
-        age = st.number_input(':calendar: Age of the van')
-        km = st.number_input(':straight_ruler: Mileage in km:')
+        age = st.number_input(':calendar: Age of the van', min_value=1, max_value=30, step=1)
+        km = st.number_input(':straight_ruler: Mileage in km:', min_value=0, max_value=1000000, step=1)
         
         fuel_input = st.radio(':fuelpump: Fuel:', ['Diesel', 'Gasoline'])
         fuel_dict = {'Diesel': 0, 'Gasoline': 1}
         fuel_value = fuel_dict[fuel_input]
 
-        power_cv = st.number_input(':horse: Horsepower in cv:')
-        consumption = st.number_input(':heavy_dollar_sign: Consumption in L/100km:')
+        power_cv = st.number_input(':horse: Horsepower in cv:', step=1)
+        consumption = st.number_input(':heavy_dollar_sign: Consumption in L/100km:', step=0.1, format="%.1f")
 
         owners_input = st.radio(':key: Previous owners:', ['One', 'More than one'])
         owners_dict = {'One': 0, 'More than one': 1}
@@ -149,14 +149,13 @@ else:
         # Scale the features
         scaler = StandardScaler()
         X_scaled = scaler.fit_transform(X)
-        X_scaled = pd.DataFrame(X_scaled, columns=X.columns)
-        X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, train_size=0.8, random_state=42)
+        # X_scaled = pd.DataFrame(X_scaled, columns=X.columns)
+        X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, train_size=0.85, random_state=42)
 
         # Make the prediction with the trained KNN model
         knn_reg = KNeighborsRegressor(n_neighbors=5, weights='distance', metric='manhattan')
         knn_reg.fit(X_train, y_train)
 
-        # input_features = [age, km, power_cv, consumption, fuel, owners, rear_doors, cargo, brand_price, model_price, van_size]
         input_features = [age, km, power_cv, consumption, fuel_value, owners_value, rear_doors, cargo_value, brand_price_value, model_price_value, van_size]
 
         # Scale the input (same scaling transformation as for training data)

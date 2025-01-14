@@ -157,7 +157,7 @@ Most of the vans (91,79%) run with diesel.
 
 Before advancing any further, I generate some graphs like scatterplots and a heatmap in order to find odd values, and generate some predictions.
 
-In doing so, I realize that some predicted prices are negative. After some digging, I find that these vans with predicted negative prices are mostly because one or more of the following reasons: 
+In doing so, I realize that some predicted prices are negative. After some digging, I found that these vans with predicted negative prices are mostly due to one or more of the following reasons: 
 - High mileage
 - Old age
 - Low horsepower
@@ -241,9 +241,15 @@ After all the processing, with the same OLS I got these results:
 
 We can see a clear improvement. I test all the models with the data untreated and scaled, and I can only see a difference in the KNN, which is the one that gives me the best results:
 
-- R2: 0.93198
-- MSE: 23271323.43475
-- MAPE: 14.47199%
+- R2: 0.93143
+- MSE: 24063337.42239
+- MAPE: 14.88538%
+
+In making the predictions once again, I am glad to see that there are no negative predicted prices, and the distributions of the predicted prices and actual prices are very similar. 
+
+![](images/17-histplot-price-real.png)
+
+![](images/17-histplot-price-predicted.png)
 
 
 
