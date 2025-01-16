@@ -241,9 +241,9 @@ After all the processing, with the same OLS I got these results:
 
 We can see a clear improvement. I test all the models with the data untreated and scaled, and I can only see a difference in the KNN, which is the one that gives me the best results:
 
-- R2: 0.93143
-- MSE: 24063337.42239
-- MAPE: 14.88538%
+- R2: 0.93136
+- MSE: 24085983.59092
+- MAPE: 14.88392%
 
 In making the predictions once again, I am glad to see that there are no negative predicted prices, and the distributions of the predicted prices and actual prices are very similar. 
 
