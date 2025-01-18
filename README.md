@@ -8,6 +8,10 @@ Chosing the right topic was crucial: my priority was to chose a topic where I co
 
 I thought about different topics that interest me, and in the end I though about predicting the price of a van, because all or almost all the variables have an effect on the price: brand, model, age, kms, fuel, seats, etc.
 
+https://vanpricepredictor.streamlit.app/
+
+Here's the link to the final predictor.
+
 # **Webscraping**
 
 The best website I could find was a german one (https://www.mobile.de/es), because it had the information very structured, unlike others, and I could apply a lot of filters to find the vehicles I wanted.
