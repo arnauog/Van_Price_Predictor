@@ -12,9 +12,9 @@ from sklearn.model_selection import train_test_split
 
 st.set_page_config(page_title='Van Price Prediction', page_icon=':car:', layout='wide')
 
-df = pd.read_csv('Unit 11 - 3rd project - Webscraping & ML/Datasets/df_final.csv')
+df = pd.read_csv('Datasets/df_final.csv')
 
-# definim la sidebar
+# define the sidebar
 with st.sidebar:
     selection = st.radio('', [':house: Homepage', ':chart: Visualizations', ':heavy_dollar_sign: Price Predictor'])
 
@@ -60,7 +60,7 @@ else:
         'Nissan', 'Opel', 'Peugeot', 'Renault', 'Toyota', 'Volkswagen'])
     if brand is None:
         st.write("Please select a brand.")
-    else:
+    else: # show the rest of the features once the user has selected a brand
         if brand in brand_expensive:
             brand_price_value = 2
         elif brand in brand_medium:
@@ -77,6 +77,7 @@ else:
         model_cheap = ['Berlingo', 'NV250', 'H350', 'Scudo', 'Dokker', 'NV200', 'Kangoo', 'Partner', 'Doblo', 'T4',
         'LT', 'Fiorino', 'Hiace', 'Serena', 'Qubo', 'Bipper', 'Kubistar', 'Nemo']
 
+        # define the different models depending on the brand selected
         if brand == 'Mercedes-Benz':
             model = st.selectbox(':oncoming_automobile: Model', ['Citan', 'Marco Polo', 'Sprinter', 'T', 'V', 'Viano', 'Vito'])
         elif brand == 'Hyundai':
@@ -107,6 +108,7 @@ else:
         else:
             model_price_value = 0
 
+        # rest of the features
         age = st.number_input(':calendar: Age of the van', min_value=1, max_value=30, step=1)
         km = st.number_input(':straight_ruler: Mileage in km:', min_value=0, max_value=1000000, step=1)
         
@@ -141,20 +143,21 @@ else:
         else:
             van_size = 0
 
-        df = pd.read_csv('Unit 11 - 3rd project - Webscraping & ML/Datasets/df_final.csv')
+        # Machine Learning model
+        df = pd.read_csv('Datasets/df_final.csv')
         numericals = df.select_dtypes(np.number)  # Select numerical variables
         y = numericals['price']
         X = numericals.drop(columns=['price'])
+        X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.85, random_state=42)
 
         # Scale the features
         scaler = StandardScaler()
-        X_scaled = scaler.fit_transform(X)
-        # X_scaled = pd.DataFrame(X_scaled, columns=X.columns)
-        X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, train_size=0.85, random_state=42)
+        scaled_X_train = scaler.fit_transform(X_train)
+        scaled_X_test = scaler.transform(X_test)
 
         # Make the prediction with the trained KNN model
         knn_reg = KNeighborsRegressor(n_neighbors=5, weights='distance', metric='manhattan')
-        knn_reg.fit(X_train, y_train)
+        knn_reg.fit(scaled_X_train, y_train)
 
         input_features = [age, km, power_cv, consumption, fuel_value, owners_value, rear_doors, cargo_value, brand_price_value, model_price_value, van_size]
 
