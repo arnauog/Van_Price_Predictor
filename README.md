@@ -95,11 +95,11 @@ Here is a picture with 4 different models, the 2 on the left being considered th
 
 ![](images/Ford-van-sizes.jpeg)
 
-I drop 4 brands that only had one model each and less than 4 vehicles per brand, not representative, I prefer simplifying the dataset.
+I drop 4 brands that only had one model each and less than 4 vehicles per brand, not representative, I prefer simplifying the dataset, and also models with 6 or less vans.
 
-In the beggining I had models from 24 brands, and I ended up with only **57 models from 12 brands.**
+In the beggining I had models from 24 brands, and I ended up with only **48 models from 12 brands.**
 
-I started with 18.636 vehicles and finished with 17.721, meaning I dropped almost a thousand vehicles, which either they were cars or I couldn't find them again on the website.
+I started with 18.636 vehicles and finished with 17.686, meaning I dropped almost a thousand vehicles, which either they were cars or I couldn't find them again on the website.
 
 ## ``consumption``
 
@@ -181,7 +181,7 @@ Let's take a look at the boxplot before and after:
 ![](images/05-price-boxplot-before.png)
 ![](images/05-price-boxplot-after.png)
 
-The mean price is **29.527€**
+The mean price is **29.578€**
 
 ### ``km``
 
@@ -194,7 +194,7 @@ Like I said before, thanks to the scatterplot I can find a van that its price do
 ![](images/06-km-boxplot-before.png)
 ![](images/06-km-boxplot-after.png)
 
-The mean mileage is **106.963km**
+The mean mileage is **106.862km**
 
 I do the same thing with ``age`` and ``power_cv``
 
@@ -207,7 +207,7 @@ I get dummies of the following features:
 
 Going back to ``seats``, from the number of seats I can tell if a van is a cargo van (2 or 3 seats) or a passenger (4 or more seats), so I can get another dummy, ``cargo``.
 
-Thanks to the extensive work I did on the brand and model, I can get 3 new categories: ``brand_price``, ``model_price`` and ``van_size``. It doesn't make sense the get dummies out of all the brands or models (remember, 12 brands and 57 models), but instead I separate the brands and models in 3 categories depending on their mean price, which I get from a groupby.
+Thanks to the extensive work I did on the brand and model, I can get 3 new categories: ``brand_price``, ``model_price`` and ``van_size``. It doesn't make sense the get dummies out of all the brands or models (remember, 12 brands and 48 models), but instead I separate the brands and models in 3 categories depending on their mean price, which I get from a groupby.
 
 ![](images/13-brand-per-price.png) ![](images/13-brand-per-price_groupby.png)
 
