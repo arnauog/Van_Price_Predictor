@@ -16,14 +16,9 @@ df = pd.read_csv('Datasets/df_final.csv')
 
 # define the sidebar
 with st.sidebar:
-    selection = st.radio('', [':house: Homepage', ':chart: Visualizations', ':heavy_dollar_sign: Price Predictor'])
+    selection = st.radio('', [':heavy_dollar_sign: Price Predictor', ':chart: Visualizations'])
 
-if selection == ':house: Homepage':
-    st.title('Homepage')
-    st.write("Do you want to know how much is the van of your dreams? Or at least the one you can afford...")
-    st.image('https://images.stockcake.com/public/1/4/7/147f0712-e989-4512-8558-bd57bbdd91b2_large/van-life-adventure-stockcake.jpg')
-
-elif selection == ':chart: Visualizations':
+if selection == ':chart: Visualizations':
     col1, col2 = st.columns([1, 2])
     with col1:
         st.header('Price per brand')
@@ -49,8 +44,8 @@ elif selection == ':chart: Visualizations':
 
 else:
     st.title('Van Price Prediction')
-    st.write("How much money do you need to save? Let's find out!")
-    st.image('https://images.theconversation.com/files/500826/original/file-20221213-22773-agowbw.jpg?ixlib=rb-4.1.0&rect=0%2C502%2C4000%2C2000&q=45&auto=format&w=668&h=324&fit=crop')
+    st.write("Do you want to know how much is the van of your dreams? Or at least the one you can afford...")
+    st.image('https://images.stockcake.com/public/1/4/7/147f0712-e989-4512-8558-bd57bbdd91b2_large/van-life-adventure-stockcake.jpg')
     st.subheader('Features :mag:')
 
     brand_expensive = ['Mercedes-Benz']
@@ -79,26 +74,37 @@ else:
 
         # define the different models depending on the brand selected
         if brand == 'Mercedes-Benz':
+            st.image('images/logos/Mercedes-Benz.png')
             model = st.selectbox(':oncoming_automobile: Model', ['Citan', 'Marco Polo', 'Sprinter', 'T', 'V', 'Viano', 'Vito'])
         elif brand == 'Hyundai':
+            st.image('images/logos/Hyundai.jpg')
             model = st.selectbox(':oncoming_automobile: Model', ['H-1', 'H350', 'Staria'])
         elif brand == 'Volkswagen':
+            st.image('images/logos/Volkswagen.png')
             model = st.selectbox(':oncoming_automobile: Model', ['Caddy', 'Crafter', 'Grand California', 'LT', 'Multivan', 'T4', 'T5', 'T6', 'T7'])
         elif brand == 'Toyota':
+            st.image('images/logos/Toyota.png')
             model = st.selectbox(':oncoming_automobile: Model', ['Hiace', 'Proace'])
         elif brand == 'Ford':
+            st.image('images/logos/Ford.png')
             model = st.selectbox(':oncoming_automobile: Model', ['Connect', 'Custom', 'Transit'])
         elif brand == 'Opel':
+            st.image('images/logos/Opel.jpg')
             model = st.selectbox(':oncoming_automobile: Model', ['Combo', 'Movano', 'Vivaro', 'Zafira'] )
         elif brand == 'Peugeot':
+            st.image('images/logos/Peugeot.jpg')
             model = st.selectbox(':oncoming_automobile: Model', ['Bipper', 'Boxer', 'Partner', 'Rifter', 'Traveller'])
         elif brand == 'Citroën':
+            st.image('images/logos/Citroen.png')
             model = st.selectbox(':oncoming_automobile: Model', ['Berlingo', 'Jumper', 'Jumpy', 'Nemo', 'SpaceTourer'])
         elif brand == 'Renault':
+            st.image('images/logos/Renault.jpg')
             model = st.selectbox(':oncoming_automobile: Model', ['Express', 'Kangoo', 'Master', 'Trafic'])
         elif brand == 'Fiat':
+            st.image('images/logos/Fiat.jpg')
             model = st.selectbox(':oncoming_automobile: Model', ['Doblo', 'Ducato', 'Fiorino', 'Qubo', 'Scudo', 'Talento'])
         elif brand == 'Dacia':
+            st.image('images/logos/Dacia.png')
             model = st.selectbox(':oncoming_automobile: Model', ['Dokker'])
 
         if model in model_expensive:
