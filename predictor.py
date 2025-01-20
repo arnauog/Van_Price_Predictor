@@ -259,8 +259,8 @@ else:
             fuel_dict = {'Diesel': 0, 'Gasoline': 1}
             fuel_value = fuel_dict[fuel_input]
 
-            power_cv = st.number_input(':horse: Horsepower in cv:', step=1)
-            consumption = st.number_input(':heavy_dollar_sign: Consumption in L/100km:', step=0.1, format="%.1f")
+            power_cv = st.number_input(':horse: Horsepower in cv:', min_value=50, step=1)
+            consumption = st.number_input(':heavy_dollar_sign: Consumption in L/100km:', min_value=4, step=0.1, format="%.1f")
 
             owners_input = st.radio(':key: Previous owners:', ['One', 'More than one'])
             owners_dict = {'One': 0, 'More than one': 1}
