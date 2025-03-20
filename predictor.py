@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
+import streamlit.components.v1 as components
 import seaborn as sns
 import matplotlib.pyplot as plt
 import warnings
@@ -19,28 +20,13 @@ with st.sidebar:
     selection = st.radio('', [':heavy_dollar_sign: Price Predictor', ':chart: Visualizations'])
 
 if selection == ':chart: Visualizations':
-    col1, col2 = st.columns([1, 2])
-    with col1:
-        st.header('Price per brand')
-        price_per_brand = df.groupby(["brand"]).agg({'price': 'mean'}).sort_values('price', ascending=False).astype({'price': int}) # mean price per brand
-        fig, ax = plt.subplots(figsize=(5,5))
-        sns.barplot(data=price_per_brand, y='brand', x='price')
-        st.pyplot(fig)
+    st.title("Statistics about the models")
+    def main():
+        html_temp="<div class='tableauPlaceholder' id='viz1742483647839' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Va&#47;VanPricePredictor&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='VanPricePredictor&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Va&#47;VanPricePredictor&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1742483647839');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1400px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1400px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='2577px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>"
+        components.html(html_temp, width=1420, height=890)
 
-        st.header('Scatterplots')
-        st.write('How do the different features affect the price?')
-        columnes = ['age', 'km', 'power_cv']
-        for i in columnes:
-            fig, ax = plt.subplots(figsize=(5,5))
-            sns.scatterplot(data=df, x=i, y='price')
-            st.pyplot(fig)
-
-    with col2:
-        st.header('Price per model')
-        price_per_model = df.pivot_table(values="price", index="model", aggfunc='mean').sort_values(['price'], ascending=False).astype({'price': int}) # mean price per model
-        fig, ax = plt.subplots(figsize=(10,20))
-        sns.barplot(data=price_per_model, y='model', x='price')
-        st.pyplot(fig)
+    if __name__ == '__main__':
+        main()
 
 else:
     st.title('Van Price Prediction')
