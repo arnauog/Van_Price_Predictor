@@ -1,4 +1,4 @@
-# Van price prediction
+# Van price predictor
 
 ![](images/00-header.jpg)
 
