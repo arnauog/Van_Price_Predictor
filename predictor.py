@@ -37,7 +37,7 @@ else:
     brand_expensive = ['Mercedes-Benz']
     brand_medium = ['Hyundai', 'Volkswagen', 'Toyota', 'Ford', 'Opel', 'Peugeot']
     brand_cheap = ['Nissan', 'Citroën', 'Renault', 'Fiat', 'Dacia']
-    brand = st.selectbox(':car: **Brand**', [None, 'Citroën', 'Dacia', 'Fiat', 'Ford', 'Hyundai', 'Mercedes-Benz',
+    brand = st.selectbox(':red_car: **Brand**', [None, 'Citroën', 'Dacia', 'Fiat', 'Ford', 'Hyundai', 'Mercedes-Benz',
         'Nissan', 'Opel', 'Peugeot', 'Renault', 'Toyota', 'Volkswagen'])
     if brand is None:
         st.write("Please select a brand.")
